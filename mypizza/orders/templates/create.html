@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+{% block title %}Оформление заказа{% endblock %}
+
+{% block body %}
+    <h1>Оформление заказа</h1>
+    <div class="order-info">
+        <h3>Ваш заказ</h3>
+        <ul>
+            {% for item in cart %}
+                <li>
+                    {{ item.quantity }} x {{ item.product.name }}
+                    <span>{{ item.total_price }} р.</span>
+                </li>
+            {% endfor %}
+        </ul>
+        <h5>К оплате: {{ cart.get_total_price }} р.</h5>
+    </div>
+    <form action="." method="post" class="order-form">
+<!--        {{ form.as_p }}-->
+
+        <div class="mb-3">
+            <label class="inline-block mb-2">Имя</label><br>
+            {{ form.first_name }}
+        </div>
+
+        <div class="mb-3">
+            <label class="inline-block mb-2">Фамилия</label><br>
+            {{ form.last_name }}
+        </div>
+
+        <div class="mb-3">
+            <label class="inline-block mb-2">Номер телефона</label><br>
+            {{ form.phone }}
+        </div>
+
+        <div class="mb-3">
+            <label class="inline-block mb-2">Email</label><br>
+            {{ form.email }}
+        </div>
+
+        <div class="mb-3">
+            <label class="inline-block mb-2">Адрес доставки</label><br>
+            {{ form.address }}
+        </div>
+
+        {% if form.errors or form.non_field_errors %}
+            <div class="mb-3 p-6 bg-red-100 rounded-xl">
+                {% for field in form %}
+                    {{ field.errors }}
+                {% endfor %}
+
+                {{ form.non_field_errors }}
+            </div>
+        {% endif %}
+
+        <p><input type="submit" class="btn btn-lg btn-outline-danger" value="Заказать"></p>
+        {% csrf_token %}
+    </form>
+{% endblock %}

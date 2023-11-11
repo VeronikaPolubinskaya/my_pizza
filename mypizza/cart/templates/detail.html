@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Корзина
+{% endblock %}
+
+{% block body %}
+    <h1>Ваша корзина товаров</h1>
+    <table class="cart">
+        <thead>
+        <tr>
+            <th width="150">Продукты </th>
+            <th width="150">Количество </th>
+            <th width="150">Удалить </th>
+            <th width="150">Цена за ед., р. </th>
+            <th width="150"> Сумма, р. </th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for item in cart %}
+            {% with product=item.product %}
+                <tr>
+                    <td>{{ product.name }}  </td>
+                    <td>{{ item.quantity }}  </td>
+                    <td><a href="{% url 'cart:cart_remove' product.id%}">Удалить</a></td>
+                    <td class="num">{{ item.price }}  </td>
+                    <td class="num">{{ item.total_price }}</td>
+                </tr>
+            {% endwith %}
+        {% endfor %}
+        <tr class="total">
+            <th>К оплате</th>
+            <td colspan="3"></td>
+            <th class="num">{{ cart.get_total_price }} p.</th>
+        </tr>
+        </tbody>
+    </table>
+    <p class="text-right">
+        <br><a href="{% url 'pizza:pizza_list' %}" class="button light">Смотреть еще</a><br>
+        <br><br><a href="{% url 'orders:order_create' %}" class=" btn btn-lg btn-outline-danger">Оформить заказ</a>
+    </p>
+{% endblock %}

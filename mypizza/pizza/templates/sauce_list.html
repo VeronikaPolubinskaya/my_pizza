@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block title %}
+<title>Pizza</title>
+{% endblock %}
+
+{% block body %}
+
+  <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
+    {% for el in products %}
+      <main>
+        <div class="col">
+          <div class="card mb-4 rounded-3 shadow-sm">
+            <div class="card-header py-3">
+              <h4 class="card-title pricing-card-title">{{ el.name }}</h4>
+            </div>
+
+            <div class="card-body">
+              <div>
+                <img src="{{ el.image.url }}" class="rounded-t-xl">
+              </div>
+              <p class="my-0 fw-normal">{{ el.description }}</p>
+              <h4 class="card-title pricing-card-title">{{ el.price }}<small class="text-body-secondary fw-light"> руб.</small></h4>
+              <form action="{% url 'cart:cart_add' el.id %}" method="post">
+                {{ cart_product_form }}
+                {% csrf_token %}
+                <input type="submit" class="w-100 btn btn-lg btn-outline-danger" value="В корзину">
+              </form>
+            </div>
+          </div>
+        </div>
+      </main>
+    {% endfor %}
+  </div>
+
+
+
+{% endblock %}
