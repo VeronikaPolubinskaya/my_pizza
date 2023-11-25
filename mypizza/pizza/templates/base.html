@@ -16,11 +16,12 @@
       <nav class="py-6 px-6 flex mt-2 mt-md-4 ms-md-auto">
           <a class="btn btn-primary" href="/">Пицца</a>
           <a class="btn btn-primary" href="/sauce">Соусы</a>
-          <a class="btn btn-primary" href="#">Напитки</a>
+          <a class="btn btn-primary" href="/drinks">Напитки</a>
       </nav>
       </a>
 
       <nav class="py-6 px-6 flex mt-2 mt-md-4 ms-md-auto">
+        <a class="btn btn-primary btn-lgd" href="/orders/order_status"> Pizza Tracker </a>
         <a class="btn btn-primary btn-lgd"> 📞 7777 </a>
         <a class="btn btn-danger" href="/cart">
           {% with total_items=cart|length %}
@@ -36,6 +37,7 @@
       </nav>
     </div>
   </header>
+
 {% block body %} {% endblock %}
 
   <footer class="pt-4 my-md-5 pt-md-5 border-top">

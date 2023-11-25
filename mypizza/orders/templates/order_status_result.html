@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %}Pizza Tracker{% endblock %}
+
+{% block body %}
+    <h1>Pizza Tracker</h1><br><br>
+    <h4>Ваш заказ № {{ order_id}}
+        <strong>{{ order_status}}</strong>.</h4>
+    <h6>Заказ состоит из:</h6>
+    {% for item in order.items.all %}
+        <p> &nbsp&nbsp&nbsp {{ item.product.name }} - {{ item.quantity }} шт.</p>
+    {% endfor %}
+    <h6>Стоимость заказа: {{ order.get_total_cost }} р.</h6>
+
+    <br><br><h4> Этапы выполнения заказа </h4><br>
+    <p> 1. Заказ подтвержден &nbsp&nbsp&nbsp&nbsp 2. Заказ в процессе изготовления &nbsp&nbsp&nbsp&nbsp  3. Заказ готов &nbsp&nbsp&nbsp&nbsp 4. Заказ уже в пути  </p><br>
+
+    <div>
+        <img src="/media/pizza_tracker.png">
+    </div>
+
+{% endblock %}

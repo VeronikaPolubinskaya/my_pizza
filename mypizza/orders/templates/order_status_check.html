@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block title %}Pizza Tracker{% endblock %}
+
+{% block body %}
+    <h1>Pizza Tracker</h1><br><br>
+<!--    <div class="order-info">-->
+<!--        <h3>Ваш заказ</h3>-->
+<!--    </div>-->
+
+    <form action="." method="post" class="order-form">
+<!--        {{ form.as_p }}-->
+
+        <div class="mb-3">
+            <label class="inline-block mb-2">Ведите номер заказа</label><br>
+            {{ form.order_number}}
+            <br><label class="inline-block mb-2">*Номер заказа для отслеживания статуса отправляется на электронный адрес после подтверждения оператором колл-центра</label><br>
+        </div>
+
+
+        {% if form.errors or form.non_field_errors %}
+            <div class="mb-3 p-6 bg-red-100 rounded-xl">
+                {% for field in form %}
+                    {{ field.errors }}
+                {% endfor %}
+
+                {{ form.non_field_errors }}
+            </div>
+        {% endif %}
+
+        <p><input type="submit" class="btn btn-lg btn-outline-danger" value="Проверить"></p>
+        {% csrf_token %}
+    </form>
+
+    <br><br><h4> Этапы выполнения заказа </h4><br>
+    <p> 1. Заказ подтвержден &nbsp&nbsp&nbsp&nbsp 2. Заказ в процессе изготовления &nbsp&nbsp&nbsp&nbsp  3. Заказ готов &nbsp&nbsp&nbsp&nbsp 4. Заказ уже в пути  </p><br>
+    <div>
+        <img src="/media/pizza_tracker.png">
+    </div>
+{% endblock %}

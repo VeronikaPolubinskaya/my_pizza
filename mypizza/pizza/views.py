@@ -25,3 +25,15 @@ def sauce_list(request):
         'products': products,
         'cart_product_form': cart_product_form
     })
+
+def drinks_list(request):
+
+    pizza_category = Category.objects.get(name='Напитки')
+
+    products = Product.objects.filter(category=pizza_category)
+
+    cart_product_form = CartAddProductForm()
+    return render(request, 'drinks_list.html', {
+        'products': products,
+        'cart_product_form': cart_product_form
+    })

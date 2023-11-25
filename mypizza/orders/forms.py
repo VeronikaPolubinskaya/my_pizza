@@ -6,3 +6,8 @@ class OrderCreateForm(forms.ModelForm):
     class Meta:
         model = Order
         fields = ['first_name', 'last_name', 'phone', 'email', 'address']
+
+
+class OrderStatusForm(forms.Form):
+    order_number = forms.CharField(max_length=20)
+

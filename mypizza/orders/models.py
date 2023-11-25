@@ -2,7 +2,7 @@ from django.db import models
 from pizza.models import Product
 
 class Order(models.Model):
-    STATUSES = [('new', 'Новый'), ('confirmed', 'Подтвержден'), ('ready', 'Готов'), ('sent', 'Отправлен')]
+    STATUSES = [('new', 'Новый'), ('confirmed', 'Подтвержден'), ('ready', 'Готов'), ('mail_sent', 'Отправлено уведомление'), ('order_sent', 'Заказ отправлен') ]
 
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
